@@ -1,5 +1,6 @@
 package de.dhbw.tinf19.memorymodel.performance;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
@@ -16,7 +17,7 @@ public class Main {
 
         final long start = System.nanoTime();
         long sum = 0;
-        for (int i = 0; i < 100000; ++i) {
+        for (int i = 0; i < 100_000; ++i) {
             for (int j = 0; j < data.length; ++j) {
                 if (data[j] >= 128) {
                     sum += data[j];
