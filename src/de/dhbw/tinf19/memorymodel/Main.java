@@ -1,11 +1,5 @@
 package de.dhbw.tinf19.memorymodel;
 
-import de.dhbw.tinf19.memorymodel.scenario.Scenario1;
-import de.dhbw.tinf19.memorymodel.scenario.Scenario2;
-import de.dhbw.tinf19.memorymodel.scenario.Scenario3;
-import de.dhbw.tinf19.memorymodel.scenario.Scenario4;
-import de.dhbw.tinf19.memorymodel.scenario.Scenario5;
-
 public class Main {
 	
 	public static void main(String[] args) {
