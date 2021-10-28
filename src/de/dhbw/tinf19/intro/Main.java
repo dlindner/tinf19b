@@ -13,11 +13,14 @@ public class Main {
 		final Iterable<Auto> fuhrpark = Arrays.asList(
 				tesla,
 				mustang);
-		fuhrpark.forEach(Auto::fahre);
+		for (Auto each : fuhrpark) {
+			each.fahre();
+		}
+		//fuhrpark.forEach(Auto::fahre);
 
-		final Flughafenparkplatz parkplatz = new Flughafenparkplatz();
-		parkplatz.parke(tesla);
-		parkplatz.parke(mustang);
-		fuhrpark.forEach(parkplatz::parke);
+//		final Flughafenparkplatz parkplatz = new Flughafenparkplatz();
+//		parkplatz.parke(tesla);
+//		parkplatz.parke(mustang);
+//		fuhrpark.forEach(parkplatz::parke);
 	}
 }
