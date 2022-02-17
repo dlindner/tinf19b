@@ -1,5 +1,6 @@
 package de.dhbw.tinf19.tests;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
 
 import java.time.LocalDateTime;
@@ -18,9 +19,21 @@ public class IstValentinstagTest {
 		final boolean actual = IstValentinstag.am(heute);
 		
 		// Assert
-		assertFalse(actual);
+		assertThat(actual).isFalse();
 	}
 	
+	@Test
+	public void fürNichtweihnachten() {
+		// Arrange		
+		final LocalDateTime notxmas = LocalDateTime.of(2022, 12, 14, 0, 0);
+		
+		// Act
+		final boolean actual = IstValentinstag.am(notxmas);
+		
+		// Assert
+		assertThat(actual).isFalse();
+	}
+
 	@Test
 	public void fürDenValentinstag() {
 		// Arrange		
@@ -30,6 +43,6 @@ public class IstValentinstagTest {
 		final boolean actual = IstValentinstag.am(derValentinstag);
 		
 		// Assert
-		Assert.assertTrue(actual);
+		assertThat(actual).isTrue();
 	}
 }
