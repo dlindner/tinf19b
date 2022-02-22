@@ -1,12 +1,16 @@
 package de.dhbw.tinf19.tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 import java.time.LocalDateTime;
+import java.util.function.Supplier;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
+
+import de.dhbw.tinf19.tests.IstValentinstag.Zeitgeber;
 
 public class IstValentinstagTest {
 
@@ -45,4 +49,31 @@ public class IstValentinstagTest {
 		// Assert
 		assertThat(actual).isTrue();
 	}
+	
+	@Test
+	public void fürHeuteAmValentinstag() {
+		// Arrange
+		final Zeitgeber valentinstag = Mockito.mock(Zeitgeber.class);
+		Mockito.when(valentinstag.jetzt()).thenReturn(
+				LocalDateTime.of(2022, 2, 14, 11, 38));
+		
+		// Act & Assert
+		assertThat(
+			new IstValentinstag(valentinstag).heute()
+		).isTrue();
+		
+		// Verify
+		Mockito.verify(valentinstag, Mockito.times(1)).jetzt();
+	}
+	
+	@Test
+	public void fürHeuteNichtAmValentinstag() {
+		// Arrange
+		final Zeitgeber nichtValentinstag = () -> LocalDateTime.of(2022, 2, 22, 22, 22);
+
+		assertThat(
+			new IstValentinstag(nichtValentinstag).heute()
+		).isFalse();
+	}
+
 }
