@@ -9,9 +9,11 @@ public class Komprimierung extends Dekorierer {
 	
 	@Override
 	public void übertrage(String nachricht) {
+		// Zusatzarbeit vorher
 		super.übertrage(
 				komprimiere(
 						nachricht));
+		// Zusatzarbeit nachher
 	}
 	
 	private String komprimiere(String text) {
