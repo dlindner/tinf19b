@@ -1,5 +1,7 @@
 package de.dhbw.tinf19.pattern.observer;
 
+import java.util.Iterator;
+
 public class Main {
 
 	public static void main(String[] args) throws InterruptedException {
@@ -11,14 +13,23 @@ public class Main {
 		Rundumleuchte beobachter4 = new Rundumleuchte();
 		
 		subjekt.anmelden(
+			beobachter4,
 			beobachter1,
 			beobachter2,
-			beobachter3,
-			beobachter4
+			beobachter3
 		);
 				
 		Thread.sleep(1000L);
 		
-		subjekt.anruf();
+		Thread klingler = new Thread(() -> {
+				System.out.println("Der Thread " + Thread.currentThread().getId() + " mit Namen " + Thread.currentThread().getName() + " klingelt ...");
+				for (int i = 0; i < 10_000; i++) {
+					subjekt.anruf();
+				}
+			},
+			"der klingler");
+		klingler.start();
+		
+		System.out.println("main endet");
 	}
 }

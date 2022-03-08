@@ -8,6 +8,13 @@ public class Rundumleuchte implements Gegensprechanlage {
 
 	@Override
 	public void gesprächswunsch() {
-		System.out.println("Anhaltendes Licht");
+		for (int i = 0; i < 359; i++) {
+			System.out.println("Anhaltendes Licht in " + i + " Grad auf Thread " + Thread.currentThread().getId());
+			try {
+				Thread.sleep(100L);
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+		}
 	}
 }

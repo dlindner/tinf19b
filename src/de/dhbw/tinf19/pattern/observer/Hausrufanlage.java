@@ -34,7 +34,9 @@ public class Hausrufanlage {
 	
 	public void anruf() {
 		for (Gegensprechanlage each : this.angemeldetenEndpunkte) {
-			each.gesprächswunsch();
+			Thread endpunktThread = new Thread(
+					each::gesprächswunsch);
+			endpunktThread.start();
 		}
 	}
 }
