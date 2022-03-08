@@ -23,13 +23,14 @@ public class Main {
 		
 		Thread klingler = new Thread(() -> {
 				System.out.println("Der Thread " + Thread.currentThread().getId() + " mit Namen " + Thread.currentThread().getName() + " klingelt ...");
-				for (int i = 0; i < 10_000; i++) {
+				for (int i = 0; i < 10; i++) {
 					subjekt.anruf();
 				}
 			},
 			"der klingler");
 		klingler.start();
 		
-		System.out.println("main endet");
+		throw new RuntimeException("Meine eigene kleine Exception");
+		//System.out.println("main endet");
 	}
 }

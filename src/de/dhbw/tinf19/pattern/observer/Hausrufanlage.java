@@ -1,5 +1,6 @@
 package de.dhbw.tinf19.pattern.observer;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -33,10 +34,25 @@ public class Hausrufanlage {
 	}
 	
 	public void anruf() {
+		List<Thread> aktionen = new ArrayList<>();
 		for (Gegensprechanlage each : this.angemeldetenEndpunkte) {
 			Thread endpunktThread = new Thread(
-					each::gesprächswunsch);
+					() -> {
+						try {
+							each.gesprächswunsch();
+						} catch (Throwable e) {
+							// Was hier tun?
+						}
+					});
+			aktionen.add(endpunktThread);
 			endpunktThread.start();
+		}
+		for (Thread each : aktionen) {
+			try {
+				each.join();
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
 		}
 	}
 }
