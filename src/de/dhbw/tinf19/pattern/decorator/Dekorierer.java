@@ -1,18 +1,16 @@
 package de.dhbw.tinf19.pattern.decorator;
 
-public abstract class Dekorierer implements VisuelleKomponente {
+public abstract class Dekorierer implements Übertragungsstrecke {
 
-	private final VisuelleKomponente nachfolger;
+	private final Übertragungsstrecke nachfolger;
 	
 	public Dekorierer(
-			final VisuelleKomponente nachfolger) {
+			final Übertragungsstrecke nachfolger) {
 		super();
 		this.nachfolger = nachfolger;
 	}
 	
-	public void zeichne() {
-		System.out.println("! Durchlaufen hinweg!");
-		this.nachfolger.zeichne();
-		System.out.println("! Durchlaufen rückweg!");
+	public void übertrage(String nachricht) {
+		this.nachfolger.übertrage(nachricht);
 	}
 }

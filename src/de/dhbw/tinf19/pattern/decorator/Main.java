@@ -4,10 +4,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Textanzeige kernDerZwiebel = new Textanzeige();
-		ScrollDekorierer ersteSchichtDrumrum = new ScrollDekorierer(kernDerZwiebel);
-		RahmenDekorierer zweiteSchicht = new RahmenDekorierer(ersteSchichtDrumrum);
+		Glasfaser kernDerZwiebel = new Glasfaser();
+		ISDN guteAlte = new ISDN();
+		Verleetung coolness = new Verleetung(guteAlte);
+		Verschlüsselung ersteSchichtDrumrum = new Verschlüsselung(coolness);
+		Komprimierung zweiteSchicht = new Komprimierung(ersteSchichtDrumrum);
+		Komprimierung dritteSchicht = new Komprimierung(zweiteSchicht);
 		
-		zweiteSchicht.zeichne();
+		dritteSchicht.übertrage("Hallo, Welt");
 	}
 }
